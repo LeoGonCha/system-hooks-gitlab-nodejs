@@ -1,14 +1,14 @@
 var express = require('express')
-var app = express();
+  , app = express.createServer();
 
-app.use(express.json());
+app.use(express.bodyParser());
 
-app.post("/", (req,res)=>{
-    console.log(req.params)
-    console.log(req.body)
-    console.log('request =' + JSON.stringify(req.body))
-    res.end('Ok');
-})
+app.post('/', function(request, response){
+  console.log(req.params)
+  console.log(req.body)
+  console.log('request =' + JSON.stringify(req.body))
+  res.end('Ok');
+});
 
 app.listen("3000", ()=>{
     console.log("Server is listening on port 3000")
