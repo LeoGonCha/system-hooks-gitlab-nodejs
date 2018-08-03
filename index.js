@@ -1,11 +1,8 @@
 const express = require('express')
 let app = express();
 
-app.configure(function(){
-   app.use(express.static("."));
-   app.use(express.bodyParser());
-   app.use(express.methodOverride());
- });
+app.use(express.static("."));
+app.use(express.bodyParser());
 
 app.get("/", (req,res)=>{
     res.sendFile(__dirname + '/index.html')
