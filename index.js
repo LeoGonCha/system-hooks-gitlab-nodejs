@@ -7,8 +7,8 @@ var shell = require('shelljs');
 app.use(express.static("."));
 app.use(bodyParser.json()); 
 
-var HOME_HOME_DIR = shel.pwd() + "/hooks";
-var HOOK_DIR = shel.pwd() + "/hooks";
+var HOME_HOME_DIR = shell.pwd() + "/hooks";
+var HOOK_DIR = shell.pwd() + "/hooks";
 
 
 app.get("/", (req,res)=>{
