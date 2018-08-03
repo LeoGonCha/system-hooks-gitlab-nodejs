@@ -10,8 +10,8 @@ app.use(bodyParser.json());
 
 app.get("/", (req,res)=>{
     shell.ls('-A', '.').forEach(function (file) {
-        console.log(file);
-    }
+        console.log(file)
+    });
     res.sendFile(__dirname + '/index.html');
 })
 
