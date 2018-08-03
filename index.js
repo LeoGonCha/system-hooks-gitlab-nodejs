@@ -9,8 +9,11 @@ app.use(bodyParser.json());
 
 
 app.get("/", (req,res)=>{
-    console.log('pwd' + shell.pwd());
-    shell.ls('-A', '.').forEach(function (file) {
+    console.log('get');
+    shell.cd('/opt/app-root/src');
+    console.log('pwd');
+    console.log(shell.pwd())
+    shell.ls('-A', '*.*').forEach(function (file) {
         console.log(file)
     });
     res.sendFile(__dirname + '/index.html');
