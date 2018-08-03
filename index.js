@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 
 app.get("/", (req,res)=>{
-    console.log("get");
+    console.log(req.body);
     shell.cd("/opt/app-root/src");
     console.log("pwd");
     res.sendFile(__dirname + '/index.html');
@@ -17,7 +17,6 @@ app.get("/", (req,res)=>{
 
 app.post("/", (req,res)=>{
     console.log(req.body);
-    console.log(req.params);
     res.end("Ok!");
 })
 
