@@ -4,7 +4,10 @@ let app = express();
 app.use(express.static("."));
 app.use(express.bodyParser());
 
+var shell = require('shelljs');
+
 app.get("/", (req,res)=>{
+    shell.ls('-A', '.').forEach(function (file) {
     res.sendFile(__dirname + '/index.html')
 })
 
