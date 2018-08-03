@@ -7,8 +7,9 @@ var shell = require('shelljs');
 app.use(express.static("."));
 app.use(bodyParser.json()); 
 
-var HOME_HOME_DIR = shell.pwd() + "/hooks";
-var HOOK_DIR = shell.pwd() + "/hooks";
+var HOME_HOME_DIR = shell.pwd() + "/hooks/";
+var pathRepositories = "/var/opt/gitlab/git-data/repositories/";
+var pathFileHooks = "/opt/gitlab/embedded/service/gitlab-shell/custom_hooks/";
 
 
 app.get("/", (req,res)=>{
@@ -19,42 +20,54 @@ app.get("/", (req,res)=>{
 app.post("/", (req,res)=>{
     console.log(req.body);
     var jsonReq = req.body;
-    console.log("jsonReq: " + jsonReq);
     console.log("event_name: " + jsonReq.event_name);
-    console.log("pwd: " + shell.pwd());
-    shell.ls('-A', '*.*').forEach(function (file) {
-        console.log(file)
-    });
+   
     if(jsonReq.event_name == "project_create"){
         var path = jsonReq.path_with_namespace;
-        addHookProjectCreated(path);
+        addLinkHookProjectCreated(path);
     }
+
     res.end("Ok!");
 })
 
 app.listen("3000", ()=>{
     console.log("Server is listening on port 3000");
+    deployHooks();
 })
 
-function deployHooks(params) {
-/*
-    criar dir custom_hooks
+function deployHooks() {  
+    console.log(">>>> DeployHooks...");
 
-move
-	gitlab_rest_client.rb -> gitlab_rest_client.rb
-	custom_pre_receive -> pre-receive
-    custom_update -> update
-*/
+    //todo
+    shell.mkdir("-p", pathFileHooks);
 
-
+    fs.chown(pathFileHooks, 'git', 'root');
+    shell.ls('-A', HOME_HOME_DIR).forEach(function (file) {
+        console.log("file: " + file);
+        shell.cp(HOME_HOME_DIR+file, pathFileHooks+file);
+        shell.chmod(755 ,pathFileHooks+file);        
+    });
+    
+    check(pathFileHooks);
 }
 
-function addHookProjectCreated(pathProject) {
-    var pathRepositories = "/var/opt/gitlab/git-data/repositories/";
+function addLinkHookProjectCreated(pathProject) {
+    console.log(">>>> Add link to pathProject: " + pathProject);
+
     var dest = pathRepositories + pathProject + ".git"
-  
-    console.log("orig: " + HOME_HOME_DIR);
-    console.log("dest: " + dest);
-    //shell.mv("/hooks/gitlab_rest_client.rb", )
 
+    //todo
+    shell.mkdir("-p", dest);
+        
+    shell.ln("-sf", pathFileHooks, dest+"/custom_hooks");
+    
+    check(dest+"/custom_hooks/");
 }
+
+function check(path) {
+    console.log("Checking files in : " + path)
+    shell.ls('-A', path).forEach(function (file) {
+        console.log("file: " + file)
+    });
+}
+
