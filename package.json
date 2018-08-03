@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "4.8.*",
+    "express": "^4.15.3",
     "method-override":"*",
-    "body-parser": "1.8",
+    "body-parser": "1.8"
   }
 }
