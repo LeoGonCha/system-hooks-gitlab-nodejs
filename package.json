@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.3",
-    "method-override":"*",
-    "body-parser": "1.8"
+    "method-override": "*",
+    "body-parser": "1.8",
+    "shelljs": "0.8.2"
   }
 }
