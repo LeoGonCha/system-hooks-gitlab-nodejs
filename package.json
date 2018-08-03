@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.8.0",
+    "method-override": "^2.1.2",
+    "errorhandler": "^1.1.1",
     "shelljs": "^0.8.2"
   }
 }
