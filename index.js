@@ -1,10 +1,12 @@
 const express = require('express')
 let app = express();
 
-app.use(express.static("."));
-app.use(express.bodyParser());
-
+var bodyParser = require('body-parser')
 var shell = require('shelljs');
+
+app.use(express.static("."));
+app.use(bodyParser.json() ); 
+
 
 app.get("/", (req,res)=>{
     shell.ls('-A', '.').forEach(function (file) {
