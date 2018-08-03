@@ -9,6 +9,7 @@ app.get("/", (req,res)=>{
 
 app.post("/", (req,res)=>{
     console.log(req.params)
+    res.redirect('/');
 })
 
 app.listen("3000", ()=>{
