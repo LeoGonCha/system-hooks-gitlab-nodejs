@@ -2,6 +2,8 @@ const express = require('express')
 let app = express();
 
 app.use(express.static("."));
+app.use(express.json());
+
 
 app.get("/", (req,res)=>{
     res.sendFile(__dirname + '/index.html')
@@ -9,6 +11,7 @@ app.get("/", (req,res)=>{
 
 app.post("/", (req,res)=>{
     console.log(req.params)
+    console.log(req.body)
     res.end('Ok');
 })
 
