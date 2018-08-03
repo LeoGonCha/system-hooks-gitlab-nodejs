@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 
 
 app.get("/", (req,res)=>{
+    console.log('pwd' + shell.pwd());
     shell.ls('-A', '.').forEach(function (file) {
         console.log(file)
     });
