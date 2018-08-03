@@ -9,13 +9,17 @@ app.use(bodyParser.json());
 
 
 app.get("/", (req,res)=>{
-    console.log(req.body);
-    console.log("pwd");
+    console.log("get");
     res.sendFile(__dirname + '/index.html');
 })
 
 app.post("/", (req,res)=>{
     console.log(req.body);
+    if(req.body.event_name == "project_create"){
+        console.log("pwd: " + shell.pwd());
+    } else {
+        console.log("pwd else: " + shell.pwd());
+    }
     res.end("Ok!");
 })
 
