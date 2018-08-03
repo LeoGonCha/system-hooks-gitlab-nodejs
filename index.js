@@ -41,11 +41,11 @@ function deployHooks() {
     //todo
     shell.mkdir("-p", pathFileHooks);
 
-    fs.chown(pathFileHooks, 'git', 'root');
     shell.ls('-A', HOME_HOME_DIR).forEach(function (file) {
         console.log("file: " + file);
-        shell.cp(HOME_HOME_DIR+file, pathFileHooks+file);
-        shell.chmod(755 ,pathFileHooks+file);        
+        var f = file.replace(/.\w+$/,"");
+        shell.cp(HOME_HOME_DIR+file, pathFileHooks+f);
+        shell.chmod(755 ,pathFileHooks+f);        
     });
     
     check(pathFileHooks);
