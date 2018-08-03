@@ -7,6 +7,10 @@ app.get("/", (req,res)=>{
     res.sendFile(__dirname + '/index.html')
 })
 
+app.post("/", (req,res)=>{
+    console.log(req.params)
+})
+
 app.listen("3000", ()=>{
     console.log("Server is listening on port 3000")
 })
