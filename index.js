@@ -1,11 +1,12 @@
-const express = require('express')
-let app = express();
+var express = require('express')
+var app = express();
 
 app.use(express.json());
 
 app.post("/", (req,res)=>{
     console.log(req.params)
     console.log(req.body)
+    console.log('request =' + JSON.stringify(req.body))
     res.end('Ok');
 })
 
