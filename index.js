@@ -39,7 +39,7 @@ function deployHooks() {
     console.log(">>>> DeployHooks...");
 
     //todo
-    shell.mkdir("-p", pathFileHooks);
+    //shell.mkdir("-p", pathFileHooks);
 
     shell.ls('-A', HOME_HOME_DIR).forEach(function (file) {
         console.log("file: " + file);
@@ -57,7 +57,7 @@ function addLinkHookProjectCreated(pathProject) {
     var dest = pathRepositories + pathProject + ".git"
 
     //todo
-    shell.mkdir("-p", dest);
+    //shell.mkdir("-p", dest);
         
     shell.ln("-sf", pathFileHooks, dest+"/custom_hooks");
     
