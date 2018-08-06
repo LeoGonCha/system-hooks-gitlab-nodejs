@@ -1,7 +1,7 @@
 #!/opt/gitlab/embedded/bin/ruby
 ENV['PATH'] = '/opt/gitlab/bin:/opt/gitlab/embedded/bin:' + ENV['PATH']
 
-require_relative './gitlab_rest_client'
+#require_relative './gitlab_rest_client'
 require 'logger'
 
 $LOG = Logger.new('/var/log/gitlab/hooks/pre_receive_custom.log', 10, 1024 * 1024 * 1)
